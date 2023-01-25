@@ -1,19 +1,13 @@
 import {useState,useEffect} from 'react';
 
 import {useNavigate} from 'react-router-dom'
-import { useAppSelector, useAppDispatch } from '../hooks/redux'
-import { fetchParlament } from "../store/action/parlamentActions";
+
 
 export const HomePage = () => {
 
 
   const navigate = useNavigate();
-  // const { parlament } = useAppSelector(state => state.parlament)
-  // const dispatch = useAppDispatch()
-
-  // useEffect(() => {
-  //   dispatch(fetchParlament())
-  // },[])
+ 
   
 const [parlament,setParlament] = useState( [
   {
@@ -55,6 +49,7 @@ const [parlament,setParlament] = useState( [
 ])
 
   return (
+ 
 
     <div className='Home'>
       <header >
@@ -71,6 +66,8 @@ const [parlament,setParlament] = useState( [
         )
       }
       </div>
+       <button onClick={() => navigate('/' + "login")}>Admin</button> 
+
     </div>
   )
 }

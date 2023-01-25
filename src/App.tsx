@@ -6,6 +6,8 @@ import { HomePage } from './pages/HomePage';
 import { MeetingsSchedulePage } from './pages/MeetingsSchedule/MeetingsSchedulePage';
 import { MPNumbersPage } from "./pages/MPnumbers/MPNumbersPage";
 import { TimeTablePage } from './pages/timeTable/TimeTablePage';
+import  Login  from './pages/login/Login'
+import  Admin from './pages/Admin/Admin';
 
 function App() {
   return (
@@ -17,7 +19,9 @@ function App() {
         <Route path='/Committees' element={<CommitteesPage/>} />
         <Route path='/MeetingsSchedule' element={<MeetingsSchedulePage/>} />
         <Route path='/MPNumbers' element={<MPNumbersPage/>} />
-        <Route path='/DepNumbers' element={<DepNumbersPage/>} />   
+        <Route path='/DepNumbers' element={<DepNumbersPage/>} /> 
+        <Route path='/login' element={<Login/>} />  
+        <Route path ='/Admin' element={<Admin/>}/>
      </Routes>
     </div>
   );

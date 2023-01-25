@@ -1,18 +1,15 @@
 import { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import { Header } from '../../components/Header/Header';
-import { useAppSelector, useAppDispatch } from '../../hooks/redux'
-import { fetchDepNum } from "../../store/action/depNumbersActions";
+
+import {useNavigate} from 'react-router-dom'
 import "./depNum.scss"
 
 
 export const DepNumbersPage = () => {
 
-  // const {depnum} = useAppSelector(state => state.telNumbers)
-  // const dispatch = useAppDispatch()
-  
-  // useEffect(()=>{
-  //   dispatch(fetchDepNum())
-  // },[])
+
+  const navigate = useNavigate();
 
   const  [depnum,setDepnum] = useState( [
     {
@@ -87,32 +84,111 @@ export const DepNumbersPage = () => {
     }
 ])
 
-  return (
-    <div className='timeTable'>
-    <Header/>
-    <div className='main_2'>
-      <div className='header_'>
-        <img src="./images/Phones.png" alt='' />
-        <h2>Կառուցվածքային ստորաբաժանումների հեռախոսահամարներ</h2>
-      </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Ստորաբաժանման անվանումը</th>
+const [add, setAdd] = useState(false)
+const [edit, setEdit] = useState(0)
+const [value, setValue] = useState('')
+const [value1, setValue1] = useState('')
+
+
+
+const remove= (id:any)=>{
+  const newComittes = depnum.filter(item => item.id !== id);
+  setDepnum(newComittes)
+
+}
+
+const saveData= (value:any,value1:any,id:any)=>{
+ 
+  
+  const newComittes = depnum.map(item => {
+    if(item.id === id) {
+      item.id = id
+      item.title = value;
+      item.tel = value1
+    }
+    return item});
+  setDepnum(newComittes)
+
+}
+
+const additem = (value:any, value1:any,e:any)=>{
+  e.preventDefault()
+const newitem ={
+  id:Date.now(),
+  title:value,
+  tel:value1
+}
+setDepnum([...depnum,newitem])
+console.log(depnum);
+
+}
+const admin:any = localStorage.getItem('user')
+
+
+return ( 
+  <div className='depnum'> 
+    <Header/> 
+    <div className='main_2'> 
+      <div className='header_'> 
+        <img src="./images/Phones.png" alt='' /> 
+        <h2>Կառուցվածքային ստորաբաժանումների հեռախոսահամարներ</h2> 
+      </div> 
+
+      {add ? <form>
+        <label>Ստորաբաժանման անվանումը</label>
+        <textarea value={value} onChange={(e:any) => {setValue(e.target.value)}}></textarea>
+
+        <label>Ներքին հեռ․</label>
+        <textarea value={value1} onChange={(e:any) => {setValue1(e.target.value)}}></textarea>
+
+        <div className='form_div'>
+          <button onClick={(e) => {additem(value, value1,e);setAdd(!add)}} >Ավելացնել</button>
+          <button onClick={()=> setAdd(!add)} >Չեղարկել</button>
+        </div> 
+
+      </form>  : <table> 
+        <thead> 
+          <tr> 
+            <th>Ստորաբաժանման անվանումը</th> 
             <th>Ներքին հեռ․</th>
-          </tr>
-        </thead>
-      {
-        depnum.map(item=> <tbody key={item.id}><tr> 
-          <td>{item.title}</td>
-          <td>{item.tel}</td>
-          </tr></tbody>
-        )
-      }
+          </tr> 
+        </thead> 
+      { 
+        depnum.map((item:any, index:number)=> <tbody key={item.id}> 
+          {edit === item.id  ? <tr className='textarea_tr'> 
+            <td className='textarea_td'> 
+              <textarea value={value} onChange={(e:any) => {setValue(e.target.value)}}></textarea> 
+            </td> 
+            <td className='textarea_td'> 
+              <textarea value={value1} onChange={(e:any) => {setValue1(e.target.value)}}></textarea> 
+            </td> 
+            <td className='textarea_td'> 
+              <button className='save'> <i onClick={() => { saveData( value,value1,item.id);setEdit(0)}} className="fa-regular fa-square-check"></i></button>
+            </td> 
+            </tr> : <tr> 
+            <td>{item.title}</td> 
+            <td>{item.tel}</td> 
+            <td>{admin && <button onClick={() => { 
+            
+              setEdit(item.id) 
+              setValue(item.title) 
+              setValue1(item.tel) 
+            }}><i className="fa-solid fa-pen"></i></button>} 
+                {admin && <button onClick={() => { 
+                remove(item.id,) 
+                }}><i className="fa-regular fa-trash-can"></i></button> } 
+            </td>   
+          </tr>} 
+          </tbody> 
+        ) 
+      } 
+      {admin && <i onClick={() =>{setAdd(!add)}} className="fa-solid fa-plus ADD"></i>}
       </table>
-    </div>
     
-  </div>
-  )
+    }
+    </div> 
+   
+</div> 
+)
 }

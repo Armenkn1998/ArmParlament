@@ -28,7 +28,8 @@ const Year = ({
   },[])
 
   const [select, setSelect] = useState<string[]>([])
-
+   const user = localStorage.getItem('user')
+ 
 
   return (
     <div className='year' data-testid='year'>
@@ -72,7 +73,9 @@ const Year = ({
 
 
                 return (
-                  <div
+                    
+                    
+                 user ?  <div
                     onClick={() => {
 
                       if (select.indexOf(id) >= 0) {
@@ -91,7 +94,11 @@ const Year = ({
                     className={select.indexOf(id) >= 0 ? `checkday` : `day`}
                   >
                     <p className={select.indexOf(id) >= 0 ? `spanCheckday ` : `day`}>{day}</p>
-                  </div>
+                  </div> :  <div   key={pos}
+                    className={select.indexOf(id) >= 0 ? `checkday` : `day`}
+                  >
+                    <p className={select.indexOf(id) >= 0 ? `checkday` : `day`}>{day}</p>
+                  </div> 
                 )
               })}
             </div>
