@@ -58,6 +58,7 @@ const [parlament,setParlament] = useState( [
           <h1>Բարի Գալուստ <br /> Հայաստանի Հանրապետության ազգային ժողով</h1>
         </div>
       </header>
+      <button style={{padding:"10px",background:"orange",fontSize:"20px",borderRadius:"10px",marginLeft:"88%"}} onClick={() => navigate('/' + "login")}>Մուտք</button> 
       <p>Հարգելի քաղաքացի ընտրեք ձեզ հետաքրքրող բաժինը ինֆորմացիա ստանալու համար</p>
       <div className='Home-parlament'>{
         parlament?.map(item => <div className='Home-item' key={item.id} onClick={() => navigate('/' + item.title)}>
@@ -66,7 +67,7 @@ const [parlament,setParlament] = useState( [
         )
       }
       </div>
-       <button onClick={() => navigate('/' + "login")}>Admin</button> 
+     
 
     </div>
   )
