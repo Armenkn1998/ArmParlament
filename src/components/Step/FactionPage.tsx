@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useEffect,useState} from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks/redux'
 import { fetchFraction } from "../../store/action/NumbersAction";
 import './StepStyle.scss'
@@ -7,12 +7,40 @@ import './StepStyle.scss'
 
 export const FactionPage = () => {
 
-  const {Fraction} = useAppSelector(state => state.Fraction)
-  const dispatch = useAppDispatch()
-  
-  useEffect(()=>{
-    dispatch(fetchFraction())
-  },[])
+const [fraction,setFraction ] = useState( [
+  {
+      "id": 1,
+      "name": "Ուժ Հայրենաց>",
+      "leader": "Տիգրան Արզաքանչյան",
+      "member": "Նատալյա Ռոտենբեռգ",
+      "cityphone": "",
+      "internalphone": "13-33"
+  },
+  {
+      "id": 2,
+      "name": "Քաղաքացիական Պայմանագիր",
+      "leader": "Նիկոլ Փաշինյան",
+      "member": "Հայկ Կոնջորյան",
+      "cityphone": "",
+      "internalphone": "13-70"
+  },
+  {
+      "id": 3,
+      "name": "Հայաստան Դաշինք",
+      "leader": "Ռոբերտ Քոչարյան",
+      "member": "Սեյրան Օհանյան",
+      "cityphone": "",
+      "internalphone": "13-88"
+  },
+  {
+      "id": 4,
+      "name": "Պատիվ ՈՒնեմ",
+      "leader": "Սերժիկ Սարգսյան",
+      "member": "Արթուր Վանեցյան",
+      "cityphone": "",
+      "internalphone": "14-65"
+  }
+],)
 
   return (
     <div>
@@ -27,7 +55,7 @@ export const FactionPage = () => {
       </thead>
       <tbody>
         {
-          Fraction.map(item=>
+          fraction.map(item=>
             <tr key={item.id}>
               <td className='td1'>{item.name}</td>
               <td className='td2'>{item.leader}<br/><span>քարտուղար </span>{item.member}</td>

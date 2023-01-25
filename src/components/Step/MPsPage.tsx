@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks/redux'
 import { fetchMpsnumber } from "../../store/action/NumbersAction";
 import './StepStyle.scss'
@@ -18,13 +18,88 @@ export const MPsPage = () => {
   const aybub: string[] = []
   const bos: Ibos[] = []
 
-  const { MPs } = useAppSelector(state => state.Mpsnumber)
-  const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    dispatch(fetchMpsnumber())
-
-  }, [dispatch])
+  const [MPs,setMPs]= useState([
+    {
+        "id": 1,
+        "name": "Ալեն",
+        "lastname": "Սիմոնյան",
+        "firstname": "Ռոբերտի",
+        "phonenumber": "14-55",
+        "key": "boss"
+    },
+    {
+        "id": 2,
+        "name": "Հակոբ",
+        "lastname": "Արշակյան",
+        "firstname": "Աշոտի",
+        "phonenumber": "14-78",
+        "key": "noboss"
+    },
+    {
+        "id": 3,
+        "name": "Ռուբեն",
+        "lastname": "Ռուբինյան",
+        "firstname": "Վալոդի",
+        "phonenumber": "14-45",
+        "key": "boss"
+    },
+    {
+        "id": 4,
+        "name": "Տիգրան",
+        "lastname": "Աբրահամյան",
+        "firstname": "Հրանտի",
+        "phonenumber": "14-34",
+        "key": "noboss"
+    },
+    {
+        "id": 5,
+        "name": "Աշոտիկ",
+        "lastname": "Սիմոնյան",
+        "firstname": "Հրանտի",
+        "phonenumber": "14-63",
+        "key": "noboss"
+    },
+    {
+        "id": 6,
+        "name": "Վահագն",
+        "lastname": "Ալեքսանյան",
+        "firstname": "Հովիկի",
+        "phonenumber": "14-88",
+        "key": "noboss"
+    },
+    {
+        "id": 7,
+        "name": "Էդուարդ",
+        "lastname": "Աղաջանյան",
+        "firstname": "Արթուրի",
+        "phonenumber": "14-35",
+        "key": "boss"
+    },
+    {
+        "id": 8,
+        "name": "Գևորգ",
+        "lastname": "Բալդրյան",
+        "firstname": "Վահեի",
+        "phonenumber": "15-75",
+        "key": "noboss"
+    },
+    {
+        "id": 9,
+        "name": "Գոռ",
+        "lastname": "Սանոսյան",
+        "firstname": "Վաչեի",
+        "phonenumber": "18-88",
+        "key": "noboss"
+    },
+    {
+        "id": 10,
+        "name": "Տիգրան",
+        "lastname": "Արզաքանչյան",
+        "firstname": "Սերգեի",
+        "phonenumber": "13-88",
+        "key": "noboss"
+    }
+])
 
   const newMOs = MPs.filter(item => item.key === "boss")
   bos.push(...newMOs)

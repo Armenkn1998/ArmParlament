@@ -18,7 +18,7 @@ const Year = ({
 
   useEffect(() => {
 
-    if (localStorage.length !== 0) {
+    if (localStorage.getItem('data')) {
       
       let data = localStorage.getItem('data')
       data = JSON.parse(data as any)

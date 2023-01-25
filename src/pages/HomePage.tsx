@@ -8,14 +8,51 @@ export const HomePage = () => {
 
 
   const navigate = useNavigate();
-  const { parlament } = useAppSelector(state => state.parlament)
-  const dispatch = useAppDispatch()
+  // const { parlament } = useAppSelector(state => state.parlament)
+  // const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    dispatch(fetchParlament())
-  },[])
+  // useEffect(() => {
+  //   dispatch(fetchParlament())
+  // },[])
   
-
+const [parlament,setParlament] = useState( [
+  {
+      "id": 1,
+      "title": "DocCirculation",
+      "description": "Քաղաքացիների ընդունելության և փաստաթղթա- շրջանառության կարգը",
+      "img": "./images/Frame1.png"
+  },
+  {
+      "id": 2,
+      "title": "TimeTable",
+      "description": "Քաղաքացիների ընդունելության ժամանակացույց",
+      "img": "./images/Frame2.png"
+  },
+  {
+      "id": 3,
+      "title": "Committees",
+      "description": "Մշտական հանձնաժողովները և նրանց գործունեության ոլորտները",
+      "img": "./images/Frame3.png"
+  },
+  {
+      "id": 4,
+      "title": "MeetingsSchedule",
+      "description": "ԱԺ նիստերի ժամանակացույց",
+      "img": "./images/Frame4.png"
+  },
+  {
+      "id": 5,
+      "title": "MPNumbers",
+      "description": "Պատգամավորների աշխատանքային հեռախոսահամարները",
+      "img": "./images/Frame5.png"
+  },
+  {
+      "id": 6,
+      "title": "DepNumbers",
+      "description": "Կառուցվածքային ստորաբաժանումների հեռախոսահամարներ",
+      "img": "./images/Frame6.png"
+  }
+])
 
   return (
 
